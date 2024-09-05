@@ -1,0 +1,54 @@
+<div class="container-sm">
+  <h3 class="mb-5">Welcome to our support management</h3>
+  <div class="row mb-5">
+    <div class="col-12">
+      <form class="qna-form" #qnaForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="exampleInputQ" class="form-label">Question</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputQ"
+            aria-describedby="qHelp"
+            [(ngModel)]="model.questions"
+            name="questions"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputQ" class="form-label">Answer</label>
+          <textarea
+            class="form-control"
+            id="exampleInputA"
+            aria-describedby="aHelp"
+            rows="3"
+            [(ngModel)]="model.answers"
+            name="answers"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let q of list"
+        >
+          <p *ngIf="selected !== q.id"  (click)="selectQuestion(q)" >{{ q.questions }}</p>
+          <div *ngIf="selected === q.id">
+            <input [(ngModel)]="q.questions" (onchange)="editQuestion(q)" />
+            <button (click)="updateQuestion(q)">Ok</button>
+            <button (click)="selectQuestion(q)">Cancel</button>
+            <button (click)="deleteQuestion(q)">Delete</button>
+          </div>
+          <!-- Tip: Answer should be hidden - this section should work similar to Q&A -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -46,7 +46,8 @@ Different Injection Options:
 
 -
 
-```SELECT id, name, email, created_at
+```
+SELECT id, name, email, created_at
 FROM users
 ORDER BY created_at DESC
 LIMIT 10;
